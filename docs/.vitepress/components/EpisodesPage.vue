@@ -120,7 +120,6 @@ onMounted(() => {
               </div>
             </th>
             <th>对应漫画</th>
-            <th>备注</th>
           </tr>
         </thead>
         <tbody>
@@ -135,7 +134,6 @@ onMounted(() => {
             <td class="episode-title jp">{{ episode.jpTitle }}</td>
             <td class="episode-date">{{ episode.airDate }}</td>
             <td class="episode-manga">{{ episode.manga }}</td>
-            <td class="episode-notes">{{ episode.notes || '-' }}</td>
           </tr>
         </tbody>
       </table>
@@ -423,12 +421,7 @@ onMounted(() => {
   display: inline-block;
 }
 
-.episode-notes {
-  font-style: italic;
-  color: var(--vp-c-text-2);
-  min-width: 150px;
-  font-size: 13px;
-}
+
 
 .pagination {
   display: flex;
