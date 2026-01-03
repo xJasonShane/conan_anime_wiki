@@ -62,12 +62,7 @@ onMounted(() => {
 
 <template>
   <div class="episodes-page">
-    <div class="page-header">
-      <h1 class="page-title">剧集列表</h1>
-      <div class="page-info">
-        共 <span class="highlight">{{ paginatedData.total }}</span> 集动画
-      </div>
-    </div>
+    
 
     <div class="search-section">
       <div class="search-box-wrapper">
