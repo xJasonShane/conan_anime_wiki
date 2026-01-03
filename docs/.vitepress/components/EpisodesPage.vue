@@ -1,17 +1,42 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { getEpisodes, sortEpisodes, paginateEpisodes } from '../../data/utils'
+import { ref, computed, onMounted, watch } from 'vue'
+import { getEpisodes, sortEpisodes, paginateEpisodes, searchEpisodes } from '../../data/utils'
 
 const episodes = ref([])
+const searchQuery = ref('')
 const currentPage = ref(1)
 const pageSize = ref(20)
 const sortBy = ref('id')
 const sortOrder = ref('asc')
+const isSearching = ref(false)
 
-const sortedEpisodes = computed(() => {
-  return sortEpisodes(episodes.value, sortBy.value, sortOrder.value)
+// 搜索防抖
+let debounceTimer = null
+
+watch(searchQuery, (newValue) => {
+  isSearching.value = true
+  currentPage.value = 1 // 搜索时重置到第一页
+  
+  clearTimeout(debounceTimer)
+  debounceTimer = setTimeout(() => {
+    isSearching.value = false
+  }, 300)
 })
 
+// 过滤搜索结果
+const filteredEpisodes = computed(() => {
+  if (!searchQuery.value) {
+    return episodes.value
+  }
+  return searchEpisodes(searchQuery.value)
+})
+
+// 排序结果
+const sortedEpisodes = computed(() => {
+  return sortEpisodes(filteredEpisodes.value, sortBy.value, sortOrder.value)
+})
+
+// 分页数据
 const paginatedData = computed(() => {
   return paginateEpisodes(sortedEpisodes.value, currentPage.value, pageSize.value)
 })
@@ -37,10 +62,27 @@ onMounted(() => {
 
 <template>
   <div class="episodes-page">
-    <div class="page-header">
-      <h1 class="page-title">剧集列表</h1>
-      <div class="page-info">
-        共 <span class="highlight">{{ paginatedData.total }}</span> 集动画
+    
+
+    <div class="search-section">
+      <div class="search-box-wrapper">
+        <div class="search-icon-wrapper">
+          <span class="search-icon">🔍</span>
+        </div>
+        <input 
+          v-model="searchQuery" 
+          type="text" 
+          placeholder="搜索剧集号、中文标题、日文标题、漫画对应..."
+          class="search-input"
+        />
+        <button v-if="searchQuery" @click="searchQuery = ''" class="clear-btn">
+          ✕
+        </button>
+      </div>
+
+      <div class="search-info" v-if="searchQuery">
+        <span v-if="isSearching" class="loading">搜索中...</span>
+        <span v-else class="result-count">找到 <strong>{{ filteredEpisodes.length }}</strong> 个结果</span>
       </div>
     </div>
 
@@ -50,8 +92,13 @@ onMounted(() => {
           <tr>
             <th @click="handleSort('id')" class="sortable" :class="{ active: sortBy === 'id' }">
               <div class="th-content">
-                <span>集数</span>
+                <span>原版集数</span>
                 <span v-if="sortBy === 'id'" class="sort-indicator">{{ sortOrder === 'asc' ? '↑' : '↓' }}</span>
+              </div>
+            </th>
+            <th>
+              <div class="th-content">
+                <span>拆分版集数</span>
               </div>
             </th>
             <th @click="handleSort('cnTitle')" class="sortable" :class="{ active: sortBy === 'cnTitle' }">
@@ -73,7 +120,6 @@ onMounted(() => {
               </div>
             </th>
             <th>对应漫画</th>
-            <th>备注</th>
           </tr>
         </thead>
         <tbody>
@@ -81,11 +127,13 @@ onMounted(() => {
             <td class="episode-id">
               <span class="id-badge">{{ episode.id }}</span>
             </td>
+            <td class="episode-id">
+              <span class="id-badge">{{ episode.splitId || '-' }}</span>
+            </td>
             <td class="episode-title cn">{{ episode.cnTitle }}</td>
             <td class="episode-title jp">{{ episode.jpTitle }}</td>
             <td class="episode-date">{{ episode.airDate }}</td>
             <td class="episode-manga">{{ episode.manga }}</td>
-            <td class="episode-notes">{{ episode.notes || '-' }}</td>
           </tr>
         </tbody>
       </table>
@@ -134,6 +182,104 @@ onMounted(() => {
   padding: 40px 20px;
 }
 
+/* Search Section */
+.search-section {
+  margin-bottom: 32px;
+}
+
+.search-box-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--vp-c-bg);
+  border: 2px solid var(--vp-c-border);
+  border-radius: 16px;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.search-box-wrapper:focus-within {
+  border-color: #667eea;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+}
+
+.search-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.search-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: var(--vp-c-text-1);
+  background: transparent;
+  padding: 8px 0;
+}
+
+.search-input::placeholder {
+  color: var(--vp-c-text-3);
+}
+
+.clear-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vp-c-bg-soft);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--vp-c-text-2);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.clear-btn:hover {
+  background: var(--vp-c-border);
+  color: var(--vp-c-text-1);
+}
+
+.search-info {
+  margin-top: 16px;
+  padding: 14px 20px;
+  background: var(--vp-c-bg-soft);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+  text-align: center;
+}
+
+.loading {
+  color: var(--vp-c-text-2);
+}
+
+.result-count {
+  color: var(--vp-c-text-2);
+}
+
+.result-count strong {
+  color: #667eea;
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .page-header {
   margin-bottom: 32px;
 }
@@ -168,6 +314,7 @@ onMounted(() => {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  table-layout: fixed;
 }
 
 .episodes-table thead {
@@ -181,6 +328,31 @@ onMounted(() => {
   font-weight: 600;
   font-size: 14px;
   border-bottom: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 调整列宽分配 */
+.episodes-table th:nth-child(1),
+.episodes-table th:nth-child(2) {
+  width: 120px;
+}
+
+.episodes-table th:nth-child(3) {
+  width: 200px;
+}
+
+.episodes-table th:nth-child(4) {
+  width: 240px;
+}
+
+.episodes-table th:nth-child(5) {
+  width: 160px;
+}
+
+.episodes-table th:nth-child(6) {
+  width: 140px;
 }
 
 .episodes-table th.sortable {
@@ -224,6 +396,9 @@ onMounted(() => {
 .episodes-table td {
   padding: 16px 20px;
   color: var(--vp-c-text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .episode-id {
@@ -275,12 +450,7 @@ onMounted(() => {
   display: inline-block;
 }
 
-.episode-notes {
-  font-style: italic;
-  color: var(--vp-c-text-2);
-  min-width: 150px;
-  font-size: 13px;
-}
+
 
 .pagination {
   display: flex;
@@ -397,7 +567,7 @@ onMounted(() => {
   }
 
   .episodes-table {
-    min-width: 600px;
+    min-width: 700px;
   }
 
   .episodes-table th,

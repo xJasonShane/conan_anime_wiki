@@ -1,385 +1,510 @@
 <script setup>
+import { ref } from 'vue'
+
+const contributors = ref([
+  { name: 'xJasonShane', role: '项目维护者', avatar: 'https://github.com/xJasonShane.png?size=40' },
+  { name: '社区贡献者', role: '数据维护', avatar: 'https://github.com/github.png?size=40' }
+])
+
+const features = [
+  { icon: '📊', title: '数据统计', description: '提供剧集总数、年度分布等详细统计信息，直观展示柯南动画的发展历程' },
+  { icon: '📝', title: '剧集列表', description: '完整的剧集列表，支持多种排序方式和分页浏览，方便快速查找特定剧集' },
+  { icon: '🔍', title: '搜索功能', description: '强大的搜索功能，支持按剧集号、标题、漫画对应等多维度搜索' },
+  { icon: '📱', title: '响应式设计', description: '完美适配桌面、平板和移动设备，随时随地查看剧集信息' },
+  { icon: '📅', title: '更新记录', description: '定期更新最新剧集信息，确保数据的及时性和准确性' },
+  { icon: '🌍', title: '多语言支持', description: '支持中英文切换，方便不同语言用户使用' }
+]
+
+const techStack = [
+  { name: 'VitePress', description: '现代化的静态站点生成器', icon: '⚡' },
+  { name: 'Vue 3', description: '渐进式 JavaScript 框架', icon: '💚' },
+  { name: 'CSS', description: 'Scoped Styles 实现组件样式隔离', icon: '🎨' },
+  { name: 'JSON', description: '轻量级数据存储格式', icon: '📄' },
+  { name: 'GitHub', description: '代码托管和版本控制', icon: '🐱' },
+  { name: 'Cloudflare', description: '全球 CDN 加速', icon: '☁️' }
+]
 </script>
 
 <template>
   <div class="about-page">
-    <div class="page-header">
-      <h1 class="page-title">关于本站</h1>
-      <p class="page-subtitle">了解名侦探柯南 Wiki 的更多信息</p>
-    </div>
-
-    <div class="content-sections">
-      <div class="section-card">
-        <div class="card-icon">📖</div>
-        <h2 class="card-title">项目简介</h2>
-        <p class="card-content">
-          名侦探柯南 Wiki 是一个专注于《名侦探柯南》电视动画作品的资料库网站,收录了所有剧集的详细信息,包括中文标题、日文标题、首播时间、对应漫画等内容。
-        </p>
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <div class="hero-content">
+        <h1 class="hero-title">名侦探柯南电视动画Wiki</h1>
+        <p class="hero-subtitle">全面的《名侦探柯南》电视动画剧集信息查询平台，为柯迷提供最新、最完整的剧集资料</p>
       </div>
+    </section>
 
-      <div class="section-card">
-        <div class="card-icon">✨</div>
-        <h2 class="card-title">功能特性</h2>
-        <div class="feature-list">
-          <div class="feature-item">
-            <span class="feature-icon">📊</span>
-            <div class="feature-text">
-              <strong>数据统计</strong>
-              <p>提供剧集总数、年度分布等统计信息</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <span class="feature-icon">📝</span>
-            <div class="feature-text">
-              <strong>剧集列表</strong>
-              <p>完整的剧集列表,支持排序和分页</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <span class="feature-icon">🔍</span>
-            <div class="feature-text">
-              <strong>搜索功能</strong>
-              <p>快速搜索剧集号、标题等信息</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <span class="feature-icon">📱</span>
-            <div class="feature-text">
-              <strong>响应式设计</strong>
-              <p>完美适配桌面和移动设备</p>
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="section-content">
+        <h2 class="section-title">功能特性</h2>
+        <div class="features-grid">
+          <div class="feature-card" v-for="(feature, index) in features" :key="index">
+            <div class="feature-icon">{{ feature.icon }}</div>
+            <div class="feature-content">
+              <h3 class="feature-title">{{ feature.title }}</h3>
+              <p class="feature-description">{{ feature.description }}</p>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="section-card">
-        <div class="card-icon">🛠️</div>
-        <h2 class="card-title">技术栈</h2>
+    <!-- Tech Stack Section -->
+    <section class="tech-section">
+      <div class="section-content">
+        <h2 class="section-title">技术栈</h2>
         <div class="tech-grid">
-          <div class="tech-item">
-            <div class="tech-icon">⚡</div>
-            <div class="tech-info">
-              <strong>VitePress</strong>
-              <p>静态站点生成器</p>
-            </div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">💚</div>
-            <div class="tech-info">
-              <strong>Vue 3</strong>
-              <p>渐进式 JavaScript 框架</p>
-            </div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">🎨</div>
-            <div class="tech-info">
-              <strong>CSS</strong>
-              <p>Scoped Styles</p>
-            </div>
-          </div>
-          <div class="tech-item">
-            <div class="tech-icon">📄</div>
-            <div class="tech-info">
-              <strong>JSON</strong>
-              <p>数据存储格式</p>
+          <div class="tech-card" v-for="(tech, index) in techStack" :key="index">
+            <div class="tech-icon">{{ tech.icon }}</div>
+            <div class="tech-content">
+              <h3 class="tech-name">{{ tech.name }}</h3>
+              <p class="tech-description">{{ tech.description }}</p>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="section-card">
-        <div class="card-icon">📚</div>
-        <h2 class="card-title">数据来源</h2>
-        <p class="card-content">
-          本站数据来源于公开资料,仅供学习和参考使用。所有剧集信息均来自官方发布的内容,我们致力于提供准确、完整的信息。
+    <!-- Contributors Section -->
+    <section class="contributors-section">
+      <div class="section-content">
+        <h2 class="section-title">项目贡献者</h2>
+        <div class="contributors-grid">
+          <div class="contributor-card" v-for="(contributor, index) in contributors" :key="index">
+            <img :src="contributor.avatar" alt="" class="contributor-avatar">
+            <div class="contributor-info">
+              <h3 class="contributor-name">{{ contributor.name }}</h3>
+              <p class="contributor-role">{{ contributor.role }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Source Section -->
+    <section class="data-section">
+      <div class="section-content">
+        <h2 class="section-title">数据来源</h2>
+        <p class="section-text">
+          本站数据来源于公开资料，包括官方发布的剧集信息、漫画对应关系等。我们致力于提供准确、完整的信息，
+          但由于数据量庞大，难免存在疏漏，欢迎社区用户提出指正和补充。
         </p>
       </div>
+    </section>
 
-      <div class="section-card">
-        <div class="card-icon">📧</div>
-        <h2 class="card-title">联系方式</h2>
-        <p class="card-content">
-          如有问题或建议,欢迎通过以下方式联系我们:
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="section-content">
+        <h2 class="section-title">联系方式</h2>
+        <p class="section-text">
+          如有问题或建议，欢迎通过以下方式联系我们：
         </p>
-        <div class="contact-list">
+        <div class="contact-grid">
           <a href="#" class="contact-item">
             <span class="contact-icon">🐛</span>
-            <span>提交 Issue</span>
+            <span class="contact-text">提交 Issue</span>
           </a>
           <a href="#" class="contact-item">
-            <span class="contact-icon">✉️</span>
-            <span>发送邮件</span>
+            <span class="contact-icon">📧</span>
+            <span class="contact-text">发送邮件</span>
+          </a>
+          <a href="#" class="contact-item">
+            <span class="contact-icon">📱</span>
+            <span class="contact-text">加入社区</span>
+          </a>
+          <a href="https://github.com/xJasonShane/conan_anime_wiki" target="_blank" class="contact-item">
+            <span class="contact-icon">⭐</span>
+            <span class="contact-text">Star 项目</span>
           </a>
         </div>
       </div>
+    </section>
 
-      <div class="section-card">
-        <div class="card-icon">📜</div>
-        <h2 class="card-title">许可证</h2>
-        <p class="card-content">
-          本项目采用 MIT 许可证,您可以自由地使用、修改和分发本项目的代码。
-        </p>
-        <div class="license-badge">MIT License</div>
+    <!-- License Section -->
+    <section class="license-section">
+      <div class="section-content">
+        <h2 class="section-title">许可证</h2>
+        <div class="license-card">
+          <div class="license-badge">MIT License</div>
+          <p class="license-text">
+            本项目采用 MIT 许可证，您可以自由地使用、修改和分发本项目的代码，
+            无论是用于个人学习还是商业用途。
+          </p>
+        </div>
       </div>
-    </div>
-
-    <div class="footer-note">
-      <p>最后更新: 2024年</p>
-    </div>
+    </section>
   </div>
 </template>
 
 <style scoped>
 .about-page {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+  background: var(--vp-c-bg);
 }
 
-.page-header {
+/* Hero Section */
+.about-hero {
   text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
   margin-bottom: 60px;
+  color: white;
+  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
 }
 
-.page-title {
-  font-size: 36px;
+.hero-icon {
+  font-size: 80px;
+  margin-bottom: 24px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+}
+
+.hero-title {
+  font-size: 56px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  opacity: 0.95;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Common Section Styles */
+.features-section,
+.tech-section,
+.contributors-section,
+.data-section,
+.contact-section,
+.license-section {
+  margin-bottom: 80px;
+}
+
+.section-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 32px;
   font-weight: 800;
   color: var(--vp-c-text-1);
-  margin-bottom: 12px;
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  padding-bottom: 12px;
 }
 
-.page-subtitle {
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+.section-text {
   font-size: 16px;
+  line-height: 1.8;
   color: var(--vp-c-text-2);
-  margin: 0;
+  margin: 0 0 20px 0;
+  text-align: center;
 }
 
-.content-sections {
+/* Features Section */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.feature-card {
   display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.section-card {
-  background: var(--vp-c-bg);
+  gap: 20px;
+  padding: 32px;
+  background: var(--vp-c-bg-soft);
   border: 2px solid var(--vp-c-border);
-  border-radius: 20px;
-  padding: 40px;
+  border-radius: 16px;
   transition: all 0.3s ease;
 }
 
-.section-card:hover {
+.feature-card:hover {
   border-color: #667eea;
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
 }
 
-.card-icon {
-  font-size: 48px;
-  margin-bottom: 20px;
-  line-height: 1;
-}
-
-.card-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  margin-bottom: 16px;
-}
-
-.card-content {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--vp-c-text-2);
-  margin: 0;
-}
-
-.feature-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-top: 24px;
-}
-
-.feature-item {
-  display: flex;
-  gap: 16px;
-  padding: 20px;
-  background: var(--vp-c-bg-soft);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.feature-item:hover {
-  background: var(--vp-c-border);
-  transform: translateX(4px);
-}
-
 .feature-icon {
-  font-size: 28px;
+  font-size: 40px;
   flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 4px;
 }
 
-.feature-text {
+.feature-content {
   flex: 1;
 }
 
-.feature-text strong {
-  display: block;
-  font-size: 16px;
+.feature-title {
+  font-size: 20px;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 }
 
-.feature-text p {
+.feature-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+  margin: 0;
+}
+
+/* Tech Stack Section */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.tech-card {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--vp-c-bg-soft);
+  border: 2px solid var(--vp-c-border);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.tech-card:hover {
+  border-color: #667eea;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+}
+
+.tech-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.tech-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  margin-bottom: 8px;
+}
+
+.tech-description {
   font-size: 14px;
   color: var(--vp-c-text-2);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-.tech-grid {
+/* Contributors Section */
+.contributors-grid {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.contributor-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 32px;
+  background: var(--vp-c-bg-soft);
+  border: 2px solid var(--vp-c-border);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.contributor-card:hover {
+  border-color: #667eea;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+}
+
+.contributor-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #667eea;
+  transition: all 0.3s ease;
+}
+
+.contributor-card:hover .contributor-avatar {
+  transform: scale(1.1);
+}
+
+.contributor-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contributor-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  margin: 0;
+}
+
+.contributor-role {
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+  margin: 0;
+}
+
+/* Contact Section */
+.contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-  margin-top: 24px;
+  margin-top: 40px;
 }
 
-.tech-item {
+.contact-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  padding: 24px;
-  background: var(--vp-c-bg-soft);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.tech-item:hover {
-  background: var(--vp-c-border);
-  transform: translateY(-4px);
-}
-
-.tech-icon {
-  font-size: 32px;
-}
-
-.tech-info {
-  text-align: center;
-}
-
-.tech-info strong {
-  display: block;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  margin-bottom: 4px;
-}
-
-.tech-info p {
-  font-size: 14px;
-  color: var(--vp-c-text-2);
-  margin: 0;
-}
-
-.contact-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.contact-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
+  padding: 28px 24px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-radius: 12px;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
+  border-radius: 16px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .contact-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
 }
 
 .contact-icon {
-  font-size: 18px;
+  font-size: 32px;
+}
+
+.contact-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* License Section */
+.license-card {
+  text-align: center;
+  padding: 40px;
+  background: var(--vp-c-bg-soft);
+  border: 2px solid var(--vp-c-border);
+  border-radius: 16px;
+  margin-top: 40px;
 }
 
 .license-badge {
   display: inline-block;
-  margin-top: 20px;
-  padding: 10px 24px;
+  padding: 12px 28px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-radius: 8px;
+  border-radius: 24px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
+  margin-bottom: 24px;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-.footer-note {
-  text-align: center;
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 2px solid var(--vp-c-border);
-}
-
-.footer-note p {
-  font-size: 14px;
+.license-text {
+  font-size: 15px;
+  line-height: 1.6;
   color: var(--vp-c-text-2);
   margin: 0;
 }
 
-@media (max-width: 768px) {
+/* Responsive Design */
+@media (max-width: 1024px) {
   .about-page {
     padding: 32px 16px;
   }
 
-  .page-header {
-    margin-bottom: 40px;
+  .hero-title {
+    font-size: 44px;
   }
 
-  .page-title {
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding: 24px 12px;
+  }
+
+  .about-hero {
+    padding: 60px 20px;
+    margin-bottom: 50px;
+  }
+
+  .hero-icon {
+    font-size: 60px;
+  }
+
+  .hero-title {
+    font-size: 38px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .section-title {
     font-size: 28px;
   }
 
-  .page-subtitle {
-    font-size: 14px;
+  .features-section,
+  .tech-section,
+  .contributors-section,
+  .data-section,
+  .contact-section,
+  .license-section {
+    margin-bottom: 60px;
   }
 
-  .section-card {
-    padding: 28px;
-  }
-
-  .card-icon {
-    font-size: 40px;
-  }
-
-  .card-title {
-    font-size: 20px;
-  }
-
-  .card-content {
-    font-size: 15px;
-  }
-
-  .feature-list {
+  .features-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
   }
 
-  .feature-item {
-    padding: 16px;
+  .feature-card {
+    padding: 24px;
   }
 
   .tech-grid {
@@ -387,40 +512,58 @@
     gap: 16px;
   }
 
-  .tech-item {
-    padding: 20px;
+  .tech-card {
+    padding: 24px 16px;
   }
 
-  .contact-list {
+  .contributors-grid {
     flex-direction: column;
+    align-items: center;
+    gap: 16px;
   }
 
-  .contact-item {
+  .contributor-card {
     width: 100%;
+    max-width: 400px;
     justify-content: center;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .license-card {
+    padding: 32px 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .about-page {
-    padding: 24px 12px;
+  .hero-title {
+    font-size: 32px;
   }
 
-  .page-title {
+  .section-title {
     font-size: 24px;
   }
 
-  .section-card {
-    padding: 24px;
+  .feature-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .feature-icon {
+    align-self: center;
   }
 
   .tech-grid {
     grid-template-columns: 1fr;
   }
 
-  .footer-note {
-    margin-top: 40px;
-    padding-top: 32px;
+  .contributor-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
   }
 }
 </style>

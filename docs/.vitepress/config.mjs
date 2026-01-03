@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: '名侦探柯南 Wiki',
+  title: '《名侦探柯南》电视动画Wiki',
   description: '名侦探柯南电视动画作品资料库',
   lang: 'zh-CN',
   base: '/',
@@ -12,9 +12,7 @@ export default defineConfig({
   
   themeConfig: {
     nav: [
-      { text: '首页', link: '/' },
-      { text: '剧集列表', link: '/episodes.md' },
-      { text: '搜索', link: '/search.md' },
+      { text: '剧集列表', link: '/' },
       { text: '关于', link: '/about.md' }
     ],
 
@@ -23,9 +21,7 @@ export default defineConfig({
         {
           text: '导航',
           items: [
-            { text: '首页', link: '/' },
-            { text: '剧集列表', link: '/episodes.md' },
-            { text: '搜索', link: '/search.md' },
+            { text: '剧集列表', link: '/' },
             { text: '关于', link: '/about.md' }
           ]
         }
@@ -34,7 +30,7 @@ export default defineConfig({
 
     footer: {
       message: '基于 VitePress 构建',
-      copyright: '© 2024 名侦探柯南 Wiki'
+      copyright: `© ${new Date().getFullYear()} 名侦探柯南 Wiki`
     },
 
     editLink: {
@@ -47,30 +43,6 @@ export default defineConfig({
       formatOptions: {
         dateStyle: 'full',
         timeStyle: 'medium'
-      }
-    },
-
-    search: {
-      provider: 'local',
-      options: {
-        locales: {
-          root: {
-            translations: {
-              button: {
-                buttonText: '搜索文档',
-                buttonAriaLabel: '搜索文档'
-              },
-              modal: {
-                noResultsText: '无法找到相关结果',
-                resetButtonTitle: '清除查询条件',
-                footer: {
-                  selectText: '选择',
-                  navigateText: '切换'
-                }
-              }
-            }
-          }
-        }
       }
     },
 

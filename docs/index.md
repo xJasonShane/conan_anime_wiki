@@ -1,9 +1,10 @@
 ---
-layout: home
+layout: page
+sidebar: false
 ---
 
 <script setup>
-import HomePage from './.vitepress/components/HomePage.vue'
+import EpisodesPage from './.vitepress/components/EpisodesPage.vue'
 </script>
 
-<HomePage />
+<EpisodesPage />
