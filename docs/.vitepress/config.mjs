@@ -12,8 +12,7 @@ export default defineConfig({
   
   themeConfig: {
     nav: [
-      { text: '首页', link: '/' },
-      { text: '剧集列表', link: '/episodes.md' },
+      { text: '剧集列表', link: '/' },
       { text: '搜索', link: '/search.md' },
       { text: '关于', link: '/about.md' }
     ],
@@ -23,8 +22,7 @@ export default defineConfig({
         {
           text: '导航',
           items: [
-            { text: '首页', link: '/' },
-            { text: '剧集列表', link: '/episodes.md' },
+            { text: '剧集列表', link: '/' },
             { text: '搜索', link: '/search.md' },
             { text: '关于', link: '/about.md' }
           ]
