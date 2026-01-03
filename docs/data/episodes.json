@@ -1,0 +1,100 @@
+{
+  "episodes": [
+    {
+      "id": 1,
+      "cnTitle": "云霄飞车杀人事件",
+      "jpTitle": "ジェットコースター殺人事件",
+      "airDate": "1996-01-08",
+      "manga": "File.1-File.2",
+      "notes": "动画第一集"
+    },
+    {
+      "id": 2,
+      "cnTitle": "董事长千金绑架事件",
+      "jpTitle": "社長令嬢誘拐事件",
+      "airDate": "1996-01-15",
+      "manga": "File.3-File.4",
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "cnTitle": "偶像密室杀人事件",
+      "jpTitle": "アイドル密室殺人事件",
+      "airDate": "1996-01-22",
+      "manga": "File.5-File.7",
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "cnTitle": "大都会暗号地图事件",
+      "jpTitle": "大都会暗号地図事件",
+      "airDate": "1996-01-29",
+      "manga": "File.8-File.9",
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "cnTitle": "新干线大爆破事件",
+      "jpTitle": "新幹線大爆破事件",
+      "airDate": "1996-02-05",
+      "manga": "File.10-File.12",
+      "notes": ""
+    },
+    {
+      "id": 6,
+      "cnTitle": "情人节杀人事件",
+      "jpTitle": "バレンタイン殺人事件",
+      "airDate": "1996-02-12",
+      "manga": "File.13-File.14",
+      "notes": ""
+    },
+    {
+      "id": 7,
+      "cnTitle": "每月一件礼物威胁事件",
+      "jpTitle": "毎日一件脅迫事件",
+      "airDate": "1996-02-19",
+      "manga": "File.15-File.17",
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "cnTitle": "美术馆杀人事件",
+      "jpTitle": "美術館殺人事件",
+      "airDate": "1996-02-26",
+      "manga": "File.18-File.20",
+      "notes": ""
+    },
+    {
+      "id": 9,
+      "cnTitle": "天下第一夜祭杀人事件",
+      "jpTitle": "天下第一夜祭殺人事件",
+      "airDate": "1996-03-04",
+      "manga": "File.21-File.23",
+      "notes": ""
+    },
+    {
+      "id": 10,
+      "cnTitle": "足球选手恐吓事件",
+      "jpTitle": "サッカー選手脅迫事件",
+      "airDate": "1996-03-11",
+      "manga": "File.24-File.26",
+      "notes": ""
+    },
+    {
+      "id": 11,
+      "cnTitle": "钢琴奏鸣曲月光杀人事件",
+      "jpTitle": "ピアノソナタ月光殺人事件",
+      "airDate": "1996-04-01",
+      "manga": "File.27-File.31",
+      "notes": "经典案件"
+    },
+    {
+      "id": 12,
+      "cnTitle": "歌剧院杀人事件",
+      "jpTitle": "歌劇院殺人事件",
+      "airDate": "1996-04-08",
+      "manga": "File.32-File.35",
+      "notes": ""
+    }
+  ]
+}
