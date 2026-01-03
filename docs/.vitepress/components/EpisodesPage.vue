@@ -314,6 +314,7 @@ onMounted(() => {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  table-layout: fixed;
 }
 
 .episodes-table thead {
@@ -327,6 +328,31 @@ onMounted(() => {
   font-weight: 600;
   font-size: 14px;
   border-bottom: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 调整列宽分配 */
+.episodes-table th:nth-child(1),
+.episodes-table th:nth-child(2) {
+  width: 120px;
+}
+
+.episodes-table th:nth-child(3) {
+  width: 200px;
+}
+
+.episodes-table th:nth-child(4) {
+  width: 240px;
+}
+
+.episodes-table th:nth-child(5) {
+  width: 160px;
+}
+
+.episodes-table th:nth-child(6) {
+  width: 140px;
 }
 
 .episodes-table th.sortable {
@@ -370,6 +396,9 @@ onMounted(() => {
 .episodes-table td {
   padding: 16px 20px;
   color: var(--vp-c-text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .episode-id {
