@@ -34,7 +34,7 @@ export default defineConfig({
 
     footer: {
       message: '基于 VitePress 构建',
-      copyright: '© 2024 名侦探柯南 Wiki'
+      copyright: `© ${new Date().getFullYear()} 名侦探柯南 Wiki`
     },
 
     editLink: {

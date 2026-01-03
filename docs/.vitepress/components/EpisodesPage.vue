@@ -50,8 +50,13 @@ onMounted(() => {
           <tr>
             <th @click="handleSort('id')" class="sortable" :class="{ active: sortBy === 'id' }">
               <div class="th-content">
-                <span>集数</span>
+                <span>原版集数</span>
                 <span v-if="sortBy === 'id'" class="sort-indicator">{{ sortOrder === 'asc' ? '↑' : '↓' }}</span>
+              </div>
+            </th>
+            <th>
+              <div class="th-content">
+                <span>拆分版集数</span>
               </div>
             </th>
             <th @click="handleSort('cnTitle')" class="sortable" :class="{ active: sortBy === 'cnTitle' }">
@@ -80,6 +85,9 @@ onMounted(() => {
           <tr v-for="episode in paginatedData.data" :key="episode.id" class="episode-row">
             <td class="episode-id">
               <span class="id-badge">{{ episode.id }}</span>
+            </td>
+            <td class="episode-id">
+              <span class="id-badge">{{ episode.splitId || '-' }}</span>
             </td>
             <td class="episode-title cn">{{ episode.cnTitle }}</td>
             <td class="episode-title jp">{{ episode.jpTitle }}</td>
@@ -397,7 +405,7 @@ onMounted(() => {
   }
 
   .episodes-table {
-    min-width: 600px;
+    min-width: 700px;
   }
 
   .episodes-table th,
