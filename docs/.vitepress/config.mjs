@@ -11,13 +11,11 @@ export default defineConfig({
   ],
   
   themeConfig: {
-    logo: '/logo.png',
-    
     nav: [
       { text: '首页', link: '/' },
-      { text: '剧集列表', link: '/episodes' },
-      { text: '搜索', link: '/search' },
-      { text: '关于', link: '/about' }
+      { text: '剧集列表', link: '/episodes.md' },
+      { text: '搜索', link: '/search.md' },
+      { text: '关于', link: '/about.md' }
     ],
 
     sidebar: {
@@ -26,9 +24,9 @@ export default defineConfig({
           text: '导航',
           items: [
             { text: '首页', link: '/' },
-            { text: '剧集列表', link: '/episodes' },
-            { text: '搜索', link: '/search' },
-            { text: '关于', link: '/about' }
+            { text: '剧集列表', link: '/episodes.md' },
+            { text: '搜索', link: '/search.md' },
+            { text: '关于', link: '/about.md' }
           ]
         }
       ]
